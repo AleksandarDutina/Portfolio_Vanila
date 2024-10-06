@@ -583,17 +583,15 @@ span.single-timeline-horizontal {
   }
 }
 
-/* Content initially hidden */
 .content {
   opacity: 0;
-  transform: translateY(30px); /* Starting slightly below */
-  transition: opacity 1s ease, transform 1s ease; /* Transition effect */
+  transform: translateY(30px);
+  transition: opacity 1s ease, transform 1s ease;
 }
 
-/* Show content with animation */
 .content.show {
   opacity: 1;
-  transform: translateY(0); /* Slide into final position */
+  transform: translateY(0);
 }
 
 nav {
@@ -658,11 +656,10 @@ form {
   margin-bottom: 16px;
 }
 
-/* Style to ensure the navbar items appear as a dropdown under the button */
 @media (max-width: 991px) {
   .navbar-collapse {
     position: absolute;
-    top: 60px; /* Adjust based on navbar height */
+    top: 60px;
     right: 0;
     width: 300px;
     background-color: #343a40;
@@ -671,19 +668,16 @@ form {
     z-index: 1;
   }
 
-  /* Ensure navbar-toggler is visible */
   .navbar-toggler {
     z-index: 2;
     position: relative;
   }
 
-  /* Align navbar items in dropdown */
   .navbar-nav {
     display: flex;
     flex-direction: column;
   }
 
-  /* Adjust padding and style for nav items */
   .nav-item {
     padding: 10px;
     text-align: center;

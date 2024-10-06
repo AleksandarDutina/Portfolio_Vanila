@@ -23,12 +23,9 @@ window.addEventListener("load", function () {
   window.addEventListener("scroll", function () {
     let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
-    // Show the header when scrolling down and hide when scrolling up
     if (scrollTop < lastScrollTop) {
-      // Scroll down
       header.classList.remove("show");
     } else {
-      // Scroll up
       header.classList.add("show");
       header.style.display = "block";
     }
@@ -51,14 +48,12 @@ jQuery(document).ready(function ($) {
     "Like a song of {plant}, the {animal} flows through the air.",
   ];
 
-  // Handle form submission
   $("#query-form").on("submit", function (event) {
-    event.preventDefault(); // Prevent form from refreshing the page
+    event.preventDefault();
 
     let plantName = $("#plant").val();
     let animalName = $("#animal").val();
 
-    // Validate if both inputs are provided
     if (plantName && animalName) {
       const randomPoem = generateRandomPoem(
         plantName,
@@ -66,7 +61,6 @@ jQuery(document).ready(function ($) {
         poemSentences
       );
 
-      // Display the generated poem
       $("#poetry-title").text("Your Poem:");
       $("#poetry-body").html(randomPoem);
       $("#form-message").text("Thank you for submitting!");
@@ -75,24 +69,20 @@ jQuery(document).ready(function ($) {
     }
   });
 
-  // Reset the displayed results
   $("#resetButton").on("click", function () {
     resetResults();
   });
 
-  // Function to reset the displayed poem and message
   function resetResults() {
     $("#poetry-title").text("");
     $("#poetry-body").html("");
     $("#form-message").text("");
   }
 
-  // Function to generate a random poem
   function generateRandomPoem(plantName, animalName, sentences) {
     const randomSentences = [];
-    const maxSentences = 6; // Limit to 6 sentences
+    const maxSentences = 6;
 
-    // Shuffle the poem sentences and select up to 6 random ones
     while (randomSentences.length < maxSentences) {
       const randomIndex = Math.floor(Math.random() * sentences.length);
       const randomSentence = sentences[randomIndex]
@@ -104,29 +94,24 @@ jQuery(document).ready(function ($) {
       }
     }
 
-    // Convert the array of sentences to a paragraph
     return randomSentences.map((sentence) => `<p>${sentence}</p>`).join("");
   }
 
-  // Progress Bar
-  // When the progress bar appears in the viewport
   $(".progress-bar").appear(function () {
     const progressBar = $(this);
-    const targetValue = parseInt(progressBar.attr("aria-valuenow")); // Get the target value (e.g., 90)
-    const progressText = $(this).closest(".single-progress-txt").find("h3"); // Find the h3 element for this bar
+    const targetValue = parseInt(progressBar.attr("aria-valuenow"));
+    const progressText = $(this).closest(".single-progress-txt").find("h3");
 
-    // Animate the progress bar's width
     progressBar.css("width", targetValue + "%");
 
-    // Animate the text from 0 to the target value
     let currentValue = 0;
-    const intervalTime = 1500 / targetValue; // Set the speed based on the target value and animation duration
+    const intervalTime = 1500 / targetValue;
     const counter = setInterval(function () {
       if (currentValue < targetValue) {
         currentValue++;
         progressText.text(currentValue + "%");
       } else {
-        clearInterval(counter); // Stop the interval when we reach the target value
+        clearInterval(counter);
       }
     }, intervalTime);
   });
